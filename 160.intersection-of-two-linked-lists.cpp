@@ -1,11 +1,3 @@
-// @before-stub-for-debug-begin
-#include <vector>
-#include <string>
-#include "commoncppproblem160.h"
-
-using namespace std;
-// @before-stub-for-debug-end
-
 /*
  * @lc app=leetcode id=160 lang=cpp
  *
@@ -21,55 +13,60 @@ using namespace std;
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
-class Solution
-{
+class Solution {
 public:
-    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB)
-    {
-        if (!headA || !headB)
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        if (headA == nullptr || headB == nullptr)
             return nullptr;
-        int la = 0, lb = 0, temp = 0;
-        ListNode *pa = headA, *pb = headB;
-        //求A链表的长度
-        while (pa)
+        int lengthA = 0, lengthB = 0;
+        //求链表A的长度
+        ListNode *p1 = headA;
+        while (p1 != nullptr)
         {
-            pa = pa->next;
-            la++;
+            lengthA++;
+            p1 = p1->next;
         }
-        //求B链表的长度
-        while (pb)
+        //求链表B的长度
+        ListNode *p2 = headB;
+        while (p2 != nullptr)
         {
-            pb = pb->next;
-            pb++;
+            lengthB++;
+            p2 = p2->next;
         }
-        //让A先走
-        if (pa >= pb)
+        //先让长的走一走
+        if (lengthB >= lengthA)
         {
-            temp = pa - pb;
-            while (temp)
+            int k = lengthB - lengthA;
+            while (k > 0)
             {
-                headA = headA->next;
-                temp--;
+                headB = headB->next;
+                k--;
             }
         }
         else
-        { //让B先走
-            temp = pb - pa;
-            while (temp)
+        {
+            int k = lengthA - lengthB;
+            while (k > 0)
             {
-                headB = headB->next;
-                temp--;
+                headB = headA->next;
+                k--;
             }
         }
-        //让两个一起走
-        while (headA && headB)
+        //两者再同时走，直到走到交叉点
+        while (headA != nullptr && headB != nullptr)
         {
-            if (headA == headB)
+            if (headA != headB)
+            {
+                headA = headA->next;
+                headB = headB->next;
+            }
+            else
+            {
                 return headA;
-            headA = headA->next;
-            headB = headB->next;
+            }
         }
         return nullptr;
     }
 };
 // @lc code=end
+

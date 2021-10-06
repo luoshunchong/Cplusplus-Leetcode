@@ -1,10 +1,3 @@
-// @before-stub-for-debug-begin
-#include <vector>
-#include <string>
-
-using namespace std;
-// @before-stub-for-debug-end
-
 /*
  * @lc app=leetcode id=1 lang=cpp
  *
@@ -15,15 +8,27 @@ using namespace std;
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        int n = nums.size();
-        for (int i = 0; i < n; ++i) {
-            for (int j = i + 1; j < n; ++j) {
-                if (nums[i] + nums[j] == target) {
-                    return {i, j};
-                }
+        unordered_map<int, int> cache;
+        vector<int> answer;
+
+        for (size_t i = 0; i < nums.size(); ++i)
+        {
+            int needed_num = target - nums[i];
+
+            if (cache.find(needed_num) != cache.end())
+            {
+                // We found it
+                answer.push_back(cache[needed_num]);
+                answer.push_back(i);
+                return answer;
+            }
+            else
+            {
+                // Didn't find it
+                cache.insert(make_pair(nums[i], i));
             }
         }
-        return {};
+        return answer;
     }
 };
 // @lc code=end
