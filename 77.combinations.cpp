@@ -16,7 +16,7 @@ using namespace std;
 class Solution
 {
 public:
-    vector<vector<int>> combine(int n, int k)
+    vector<vector<int>> combine(int n, int k)//回溯法
     {
         vector<vector<int>> ans;
         vector<int> temp(k, 0);
