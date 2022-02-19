@@ -15,8 +15,12 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
-class Solution {
+class Solution
+{
 public:
+    /*
+    归并排序
+    */
     ListNode *sortList(ListNode *head)
     {
         return sortList(head, nullptr);
@@ -74,7 +78,6 @@ public:
             temp->next = temp2;
         }
         return dummyHead->next;
-        }
-    };
+    }
+};
 // @lc code=end
-
