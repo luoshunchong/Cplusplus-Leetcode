@@ -3,6 +3,13 @@
 #include <utility>
 using namespace std;
 
+int test(int num) {
+    for (int i = 0; i < num; ++i) {
+        if (i == 1) return i;
+    }
+    return -1;
+}
+
 int main()
 {
     // int a = 10;
@@ -12,8 +19,14 @@ int main()
     // cout << c << endl;
     // cout << &c << &a << endl; //取地址的方法
 
-    unordered_map<int,int> ma;
-    ma.insert(make_pair(2,3));
-    int t = ma[2];
-    cout<<t<<endl;
+    // unordered_map<int,int> ma;
+    // ma.insert(make_pair(2,3));
+    // int t = ma[2];
+    // cout<<t<<endl;
+
+    int t = test(3);
+    cout << t << endl;
+
+    // system("pause");
+    return 0;
 }
