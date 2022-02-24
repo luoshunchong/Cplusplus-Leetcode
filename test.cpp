@@ -3,12 +3,12 @@
 #include <utility>
 using namespace std;
 
-int test(int num) {
-    for (int i = 0; i < num; ++i) {
-        if (i == 1) return i;
-    }
-    return -1;
-}
+// int test(int num) {
+//     for (int i = 0; i < num; ++i) {
+//         if (i == 1) return i;
+//     }
+//     return -1;
+// }
 
 int main()
 {
@@ -24,8 +24,14 @@ int main()
     // int t = ma[2];
     // cout<<t<<endl;
 
-    int t = test(3);
-    cout << t << endl;
+    // int t = test(3);
+    // cout << t << endl;
+
+    // int a = 2 & 1;
+    // cout << a << endl;
+
+    char a = 'B' - '0';
+    cout << a << endl;
 
     // system("pause");
     return 0;
