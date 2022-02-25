@@ -18,29 +18,43 @@
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
-        //栈
-        if (head == NULL)
-            return head;
-        stack<ListNode *> temp;
-        //入栈
-        while (head != NULL)
-        {
-            temp.push(head);
-            head = head->next;
+        // //栈
+        // if (head == NULL)
+        //     return head;
+        // stack<ListNode *> temp;
+        // //入栈
+        // while (head != NULL)
+        // {
+        //     temp.push(head);
+        //     head = head->next;
+        // }
+        // //出栈
+        // //创建一个链表来保存反转的链表
+        // ListNode *res = temp.top();
+        // ListNode *p = res;
+        // temp.pop();
+        // while (!temp.empty())
+        // {
+        //     res->next = temp.top();
+        //     temp.pop();
+        //     res = res->next;
+        // }
+        // res->next = NULL;
+        // return p;
+
+        //方法二
+        //直接调转指针方向
+        if (!head) return nullptr;
+        ListNode* temp = head->next;
+        ListNode* p = nullptr;
+        while (temp) {
+            head->next = p;
+            p = head;
+            head = temp;
+            temp = head->next;
         }
-        //出栈
-        //创建一个链表来保存反转的链表
-        ListNode *res = temp.top();
-        ListNode *p = res;
-        temp.pop();
-        while (!temp.empty())
-        {
-            res->next = temp.top();
-            temp.pop();
-            res = res->next;
-        }
-        res->next = NULL;
-        return p;
+        head->next = p;
+        return head;
     }
 };
 // @lc code=end
