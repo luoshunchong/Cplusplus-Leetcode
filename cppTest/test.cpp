@@ -30,8 +30,17 @@ int main()
     // int a = 2 & 1;
     // cout << a << endl;
 
-    char a = 'B' - '0';
-    cout << a << endl;
+    // char a = 'B' - '0';
+    // cout << a << endl;
+    
+    bool flag = true;
+    for (int i = 0; i < 3; ++i) {
+        cout << i << endl;
+        if (i == 2 && flag) {
+            i = 0;
+            flag = false;
+        }
+    }
 
     // system("pause");
     return 0;
