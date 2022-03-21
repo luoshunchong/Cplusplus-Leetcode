@@ -1,6 +1,8 @@
 #include <iostream>
 #include <unordered_map>
 #include <utility>
+#include <unordered_set>
+#include <vector>
 using namespace std;
 
 // int test(int num) {
@@ -33,14 +35,20 @@ int main()
     // char a = 'B' - '0';
     // cout << a << endl;
     
-    bool flag = true;
-    for (int i = 0; i < 3; ++i) {
-        cout << i << endl;
-        if (i == 2 && flag) {
-            i = 0;
-            flag = false;
-        }
-    }
+    // bool flag = true;
+    // for (int i = 0; i < 3; ++i) {
+    //     cout << i << endl;
+    //     if (i == 2 && flag) {
+    //         i = 0;
+    //         flag = false;
+    //     }
+    // }
+
+    unordered_set<int> t;
+    unordered_set<pair<int, int> > t1;
+    unordered_set<vector<int> > t2;
+
+    vector<vector<bool>> used(101, vector<bool> (101, false));
 
     // system("pause");
     return 0;
