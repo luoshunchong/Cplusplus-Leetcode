@@ -1,6 +1,6 @@
 #include <iostream>
 #include <unordered_map>
-#include <utility>
+// #include <utility>
 #include <unordered_set>
 #include <vector>
 using namespace std;
@@ -11,6 +11,13 @@ using namespace std;
 //     }
 //     return -1;
 // }
+int sum = 0;
+int digui(int num) {
+    if (num == 0) return 0;
+    sum += num;
+    digui(num - 1);
+    return sum;
+}
 
 int main()
 {
@@ -44,11 +51,21 @@ int main()
     //     }
     // }
 
-    unordered_set<int> t;
-    unordered_set<pair<int, int> > t1;
-    unordered_set<vector<int> > t2;
+    // unordered_set<int> t;
+    // unordered_set<pair<int, int> > t1;
+    // unordered_set<vector<int> > t2;
 
-    vector<vector<bool>> used(101, vector<bool> (101, false));
+    // vector<vector<bool>> used(101, vector<bool> (101, false));
+
+    // int a = 2, b = 3;
+    // swap(a, b);
+    // cout << a << endl;
+    // cout << b << endl;
+
+    int num = 3;
+    int res = digui(num);
+    cout << res << endl;
+
 
     // system("pause");
     return 0;
