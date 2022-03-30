@@ -24,42 +24,63 @@ public:
     时间复杂度：m + n
     空间复杂度：m + n
     */
+    // double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+    //     int m = nums1.size();
+    //     int n = nums2.size();
+    //     vector<int> temp;
+    //     //得到排序后的数组
+    //     if (m == 0) temp = nums2;
+    //     else if (n == 0) temp = nums1;
+    //     else {
+    //         int i = 0;
+    //         int j = 0;
+    //         while (i < m && j < n) {
+    //             if (nums1[i] >= nums2[j]) {
+    //                 temp.push_back(nums2[j]);
+    //                 j++;
+    //             }
+    //             else {
+    //                 temp.push_back(nums1[i]);
+    //                 i++;
+    //             }
+    //         }
+    //         while (i < m) {
+    //             temp.push_back(nums1[i]);
+    //             i++;
+    //         }
+    //         while (j < n) {
+    //             temp.push_back(nums2[j]);
+    //             j++;
+    //         }
+    //     }
+    //     //计算中位数
+    //     if ((m + n) % 2 == 1) {  //单数
+    //         return temp[(m + n - 1) / 2];
+    //     }
+    //     else {  //双数
+    //         return (double)(temp[(m + n) / 2] + temp[((m + n) / 2) - 1]) / 2;
+    //     }
+    // }
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
-        int m = nums1.size();
-        int n = nums2.size();
-        vector<int> temp;
-        //得到排序后的数组
-        if (m == 0) temp = nums2;
-        else if (n == 0) temp = nums1;
-        else {
-            int i = 0;
-            int j = 0;
-            while (i < m && j < n) {
-                if (nums1[i] >= nums2[j]) {
-                    temp.push_back(nums2[j]);
-                    j++;
-                }
-                else {
-                    temp.push_back(nums1[i]);
-                    i++;
-                }
+        double res;
+        int sumNum = nums1.size() + nums2.size();
+        int tar = sumNum / 2;;
+        int a = 0, b = 0, pre = 0, cur = 0;
+        while (tar >= 0) { 
+            pre = cur;
+            if (b < nums2.size() && (a >= nums1.size() || nums1[a] >= nums2[b])) {
+                cur = nums2[b];
+                b++;
             }
-            while (i < m) {
-                temp.push_back(nums1[i]);
-                i++;
+            else {
+                cur = nums1[a];
+                a++;
             }
-            while (j < n) {
-                temp.push_back(nums2[j]);
-                j++;
-            }
+            tar--;
         }
-        //计算中位数
-        if ((m + n) % 2 == 1) {  //单数
-            return temp[(m + n - 1) / 2];
-        }
-        else {  //双数
-            return (double)(temp[(m + n) / 2] + temp[((m + n) / 2) - 1]) / 2;
-        }
+        if (sumNum & 1 == 1) res = (double)cur;
+        else res = (double)(cur + pre) / 2;
+        return res;
     }
 };
 // @lc code=end
