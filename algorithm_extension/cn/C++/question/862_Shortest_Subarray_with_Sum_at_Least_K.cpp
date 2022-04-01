@@ -18,19 +18,18 @@ using namespace std;
 class Solution {
 public:
     int shortestSubarray(vector<int>& nums, int k) {
-        int res = INT_MAX;
-        vector<long long> presum(nums.size() + 1, 0);
-        deque<int> deq;
-        for (int i = 1; i <= nums.size(); ++i) {
-            presum[i] = presum[i - 1] + nums[i - 1];
-        }
-        for (int i = 0; i < presum.size(); ++i) {
-            while (!deq.empty() && presum[i] - presum[deq.front()] >= k) {
-                res = min(res, i - deq.front());
-                deq.pop_front();
+        int res = INT_MAX, left = 0,sum = 0;
+        for (int i = 0; i < nums.size(); ++i) {
+            sum += nums[i];
+            if (sum <= 0) {
+                sum -= nums[left];
+                left++;
             }
-            while (!deq.empty() && presum[deq.back()] >= presum[i]) deq.pop_back();
-            deq.push_back(i);
+            while (sum >= k) {
+                res = min(res, i - left + 1);
+                sum -= nums[left];
+                left++;
+            }
         }
         return res == INT_MAX ? -1 : res; 
     }
