@@ -55,7 +55,8 @@ int main() {
         cout << res[i] ;
     }
     cout << endl;
-    vector<int> res1 = fastSortNodigui(nums, 0, nums.size() - 1);
+    vector<int> nums1 = {3,2,2,1,0,-3,-7};
+    vector<int> res1 = fastSortNodigui(nums1, 0, nums1.size() - 1);
     cout << "非递归实现" << endl;
     for(int i = 0; i < res1.size(); ++i) {
         cout << res1[i] ;
