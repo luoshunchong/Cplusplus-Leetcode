@@ -3,7 +3,7 @@
 #include "algm/parse.h"
 int main(int argc, char *argv[])
 {
-    string str = "[[\"[2,1,3]\"],[\"[5,1,4,null,null,3,6]\"],[\"[1,null,1]\"],[\"[1,null,2]\"],[\"[5,4,6,null,null,3,7]\"]]";
+    string str = "[[\"[5,4,6,null,null,3,7]\"]]";
     vector<vector<string>> arr = parseStringArrArr(str);
     for (int i = 0; i < arr.size(); i++)
     {
