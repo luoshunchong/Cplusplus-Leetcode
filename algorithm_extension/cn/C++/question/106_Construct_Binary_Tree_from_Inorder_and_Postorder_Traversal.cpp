@@ -27,15 +27,14 @@ public:
     TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
         //判断边界
         if (postorder.size() == 0) return nullptr;
-        TreeNode* root = check(inorder, postorder, 0, inorder.size() - 1, 0, postorder.size() - 1);
-        return root;
+        return check(inorder, postorder, 0, inorder.size() - 1, 0, postorder.size() - 1);
     }
     TreeNode* check(vector<int>& inorder, vector<int>& postorder, int inol, int inor, int posl, int posr) {
         if (inol > inor || posl > posr) return nullptr;
         //后序遍历的最后一个元素就是
         TreeNode* root = new TreeNode(postorder[posr]);
 
-        if ((posr - posl + 1) == 1) return root;
+        // if ((posr - posl + 1) == 1) return root;
 
         //找到中序遍历的中间点
         int index = inol;
