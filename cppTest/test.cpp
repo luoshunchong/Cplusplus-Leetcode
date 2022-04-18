@@ -62,9 +62,13 @@ int main()
     // cout << a << endl;
     // cout << b << endl;
 
-    int num = 3;
-    int res = digui(num);
-    cout << res << endl;
+    // int num = 3;
+    // int res = digui(num);
+    // cout << res << endl;
+
+    int a = 1;
+    a /= 2;
+    cout << a << endl;
 
 
     // system("pause");
