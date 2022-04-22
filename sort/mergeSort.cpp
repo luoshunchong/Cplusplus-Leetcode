@@ -1,9 +1,16 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include "config.h"
+// #include "config.h"
 
 using namespace std;
+
+void printArray(vector<int>& nums) {
+    for (auto a : nums) {
+        cout << a ;
+    }
+    cout << endl;
+}
 
 void Merge(vector<int> &nums, int left, int mid, int right){
     //left为第1有序区的第1个元素，i指向第1个元素, mid为第1有序区的最后1个元素
@@ -19,8 +26,11 @@ void Merge(vector<int> &nums, int left, int mid, int right){
         temp[k++] = nums[i++];
     while (j <= right)//同上
         temp[k++] = nums[j++];
-    for (i = left, k = 0; i <= right; i++, k++)//将排好序的存回nums中left到right这区间
-	    nums[i] = temp[k];
+    // for (i = left, k = 0; i <= right; i++, k++)//将排好序的存回nums中left到right这区间
+	//     nums[i] = temp[k];
+
+    for (int i = 0; i < temp.size(); ++i) //将排好序的存回nums中left到right这区间
+        nums[i + left] = temp[i];
 }
 
 void sort(vector<int> &nums, int left,int right) {
@@ -43,7 +53,8 @@ vector<int> mergeSort(vector<int> &nums) {
 
 int main() {
     //构建测试用例
-    vector<int> nums = buildTestCase(15);
+    // vector<int> nums = buildTestCase(15);
+    vector<int> nums = {9,8,0,6,3,2,9,7};
 
     //打印排序前的数组
     cout << "打印排序前的数组:";
