@@ -12,5 +12,9 @@ int main() {
 
     cout << str << endl;
     cout << b << endl;
+
+    string temp = "01";
+    int c = stoi(temp);
+    cout << c << endl;
     return 0;
 }
