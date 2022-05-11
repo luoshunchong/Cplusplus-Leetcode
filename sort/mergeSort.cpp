@@ -37,7 +37,7 @@ void sort(vector<int> &nums, int left,int right) {
     if(left >= right) { return; } // 终止递归的条件，子序列长度为1
     int mid =  left + (right - left) / 2;  // 取得序列中间的元素
     sort(nums, left, mid);  // 对左半边递归
-    sort(nums, mid+1, right);  // 对右半边递归
+    sort(nums, mid + 1, right);  // 对右半边递归
     Merge(nums, left, mid, right);  // 合并
   }
 
