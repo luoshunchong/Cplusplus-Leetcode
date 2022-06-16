@@ -59,6 +59,7 @@ void test_complete_bag_first_bag(vector<int> &weight, vector<int> &value, int ba
 }
 
 // for循环遍历物品,递归终止条件是背包被装满
+// 时间复杂度O(2^n)
 int weight_fin = 0 ; //装的物品重量
 int value_fin = 0; // 存储中间价值
 int res = 0; // 最大价值
