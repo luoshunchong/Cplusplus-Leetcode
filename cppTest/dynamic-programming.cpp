@@ -58,12 +58,36 @@ void test_complete_bag_first_bag(vector<int> &weight, vector<int> &value, int ba
     cout << "完全背包先遍历背包再遍历物品时，背包所能装的最大价值总和是：" << dp[bagSize] << endl;
 }
 
+// for循环遍历物品,递归终止条件是背包被装满
+int weight_fin = 0 ; //装的物品重量
+int value_fin = 0; // 存储中间价值
+int res = 0; // 最大价值
+void backtracking(vector<int> &weight, vector<int> &value, int bagSize, int pos) {
+    if (weight_fin > bagSize) return ;
+    res = max(res, value_fin);
+    for (int i = pos; i < weight.size(); ++i) {
+        weight_fin += weight[i];
+        value_fin += value[i];
+        backtracking(weight, value, bagSize, i + 1);
+        weight_fin -= weight[i];
+        value_fin -= value[i];
+    }
+}
+
 int main() {
+    /*
+           重量  价值
+    物品0   1     15
+    物品1   3     20
+    物品2   4     30
+    */
     vector<int> weight = {1, 3, 4};
     vector<int> value = {15, 20, 30};
     int bagsize = 4;
     //0-1背包
     //暴力解法（回溯法）
+    backtracking(weight, value, bagsize, 0);
+    cout << "回溯法暴力得到的最大价值:" << res << endl;
     
     //二维数组的情况
     test_ZeroOne_bag_two_dimensional(weight, value, bagsize);
@@ -76,6 +100,6 @@ int main() {
 
     
 
-    system("pause");
+    // system("pause");
     return 0;
 }
