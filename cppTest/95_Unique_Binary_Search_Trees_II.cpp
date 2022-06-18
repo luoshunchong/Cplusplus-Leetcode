@@ -1,25 +1,19 @@
-// @algorithm @lc id=95 lang=cpp 
-// @title unique-binary-search-trees-ii
-
-#include <stack>
 #include <iostream>
 #include <vector>
-#include <string>
-#include "algm/algm.h"
+
 using namespace std;
-// @test(3)=[[1,null,2,null,3],[1,null,3,2],[2,1,3],[3,1,null,null,2],[3,2,null,1]]
-// @test(1)=[[1]]
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
+
+
+ //Definition for a binary tree node.
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode() : val(0), left(nullptr), right(nullptr) {}
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+};
+
 class Solution {
 public:
     vector<TreeNode*> generateTrees(int n) {
@@ -54,3 +48,9 @@ public:
         return res;
     }
 };
+
+int main () {
+    Solution a;
+    vector<TreeNode* > res = a.generateTrees(3);
+    return 0;
+}
