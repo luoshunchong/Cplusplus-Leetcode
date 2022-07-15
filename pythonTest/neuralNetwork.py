@@ -30,7 +30,7 @@ myNet = nn.Sequential(
 print(myNet)
 
 # 设置损失函数和优化器
-optimzer = torch.optim.SGD(myNet.parameters(),lr=0.05)
+optimzer = torch.optim.SGD(myNet.parameters(), lr=0.05)
 loss_func = nn.MSELoss()
 
 for epoch in range(5000):

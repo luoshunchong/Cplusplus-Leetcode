@@ -9,7 +9,7 @@ def numpy_conv(inputs, myfilter):
     '''
 
     h_ori, w_ori = inputs.shape
-    h_k, w_k= myfilter.shape
+    h_k, w_k = myfilter.shape
     
     # 计算卷积之后的矩阵的长宽
     h_new, w_new = h_ori - h_k + 1, w_ori - w_k + 1
