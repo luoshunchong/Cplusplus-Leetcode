@@ -1,9 +1,17 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include "config.h"
+#include <stack>
+// #include "config.h"
 
 using namespace std;
+
+void printArray(vector<int>& nums) {
+    for (auto a : nums) {
+        cout << a ;
+    }
+    cout << endl;
+}
 
 int Partition (vector<int> &nums, int left, int right) {  //传入一个数组和要进行partition的范围
 	
@@ -44,10 +52,32 @@ vector<int> quickSort1(vector<int>& nums) {
     }
     return nums;
 }
+vector<int> quickSort2(vector<int>& nums) {
+    stack<int> st;
+    st.push(0);
+    st.push(nums.size() - 1);
+    while (!st.empty()) {
+        int right = st.top();
+        st.pop();
+        int left = st.top();
+        st.pop();
+        int mid = Partition(nums, left, right);
+        if (mid > left) {
+            st.push(left);
+            st.push(mid - 1);
+        }
+        if (mid < right) {
+            st.push(mid + 1);
+            st.push(right);
+        }
+    }
+    return nums;
+}
 
 int main() {
     //构建测试用例
-    vector<int> nums = buildTestCase(8);
+    // vector<int> nums = buildTestCase(8);
+    vector<int> nums = {9, 8, 0, 6, 3, 2, 9, 7};
 
     //打印排序前的数组
     cout << "打印排序前的数组:";
@@ -56,10 +86,12 @@ int main() {
     //排序算法实现
     vector<int> sortNums = quickSort(nums);
     vector<int> sortNums1 = quickSort1(nums);
+    vector<int> sortNums2 = quickSort2(nums);
 
     //打印排序后的数组
-    cout << "打印排序后的数组:";
+    cout << "打印排序后的数组:" << endl;
     printArray(sortNums);
     printArray(sortNums1);
+    printArray(sortNums2);
     return 0;
 }
