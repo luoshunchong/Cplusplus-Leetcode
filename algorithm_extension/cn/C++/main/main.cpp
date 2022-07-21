@@ -1,17 +1,17 @@
-#include "question/749_Contain_Virus.cpp"
+#include "question/814_Binary_Tree_Pruning.cpp"
 #include "regex"
 #include "algm/parse.h"
 int main(int argc, char *argv[])
 {
-    string str = "[[\"[[0,1,0,0,0,0,0,1],[0,1,0,0,0,0,0,1],[0,0,0,0,0,0,0,1],[0,0,0,0,0,0,0,0]]\"]]";
+    string str = "[[\"[1,null,0,0,1]\"]]";
     vector<vector<string>> arr = parseStringArrArr(str);
     for (int i = 0; i < arr.size(); i++)
     {
       vector<string> args = arr[i];
       Solution *s = new Solution();
-      vector<vector<int>> arg0 = parseIntegerArrArr(args[0]);
-      int result=s->containVirus(arg0);
-      string resultabc =serializeInteger(result);
+      TreeNode * arg0 = parseTreeNode(args[0]);
+      TreeNode * result=s->pruneTree(arg0);
+      string resultabc =serializeTreeNode(result);
       cout << "resultabc"+to_string(i)+":" << resultabc <<"resultend"<< endl;
     }
     return 0;
