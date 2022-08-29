@@ -45,20 +45,19 @@
 #     opt.step()
 
 # 自定义模型
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
+# import torch
+# import torch.nn as nn
+# import torch.nn.functional as F
 
-class myNet(nn.Module):
-    def __init__(self):
-        super(myNet, self).__init__()
-        self.linear = nn.Linear(5, 1)
+# class myNet(nn.Module):
+#     def __init__(self):
+#         super(myNet, self).__init__()
+#         self.linear = nn.Linear(5, 1)
 
-    def forward(self, x):
-        y = self.linear(x)
-        return y
+#     def forward(self, x):
+#         y = self.linear(x)
+#         return y
 
-x = torch.randn(2, 5)
-net = myNet(x)
-print(net)
-
+# x = torch.randn(2, 5)
+# net = myNet(x)
+# print(net)
