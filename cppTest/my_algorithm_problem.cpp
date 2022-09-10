@@ -164,7 +164,7 @@ void check(string& s, int m) {
 
 int main() {
     int m = 2;
-    string s = "aabba";
+    string s = "cabba";
     check(s, m);
     return 0;
 }
