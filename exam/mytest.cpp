@@ -503,3 +503,21 @@
 //     }
 //     return 0;
 // }
+
+#include <iostream>
+
+using namespace std;
+
+class A{
+    char a[3];
+public:
+    virtual void fun1() {};
+};
+
+int main() {
+    // char a = 'a';
+    // int b = static_cast<char>(a);
+    cout << sizeof(A) << endl;
+    return 0;
+}
+
