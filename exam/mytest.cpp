@@ -504,20 +504,190 @@
 //     return 0;
 // }
 
-#include <iostream>
+// #include <iostream>
+// #include <vector>
 
-using namespace std;
+// using namespace std;
 
-class A{
-    char a[3];
-public:
-    virtual void fun1() {};
-};
+// int main() {
+//     int t;
+//     cin >> t;
+//     for (int i = 0; i < t; ++i) {
+//         int n;
+//         cin >> n;
+//         string s1;
+//         string s2;
+//         cin.ignore();
+//         getline(cin, s1);
+//         getline(cin, s2);
 
-int main() {
-    // char a = 'a';
-    // int b = static_cast<char>(a);
-    cout << sizeof(A) << endl;
-    return 0;
-}
+//         if (s1[0] != s2[0] || s1[n - 1] != s2[n - 1]) {
+//             cout << "NO" << endl;
+//             continue;
+//         }
+//         vector<int> dp(n);
+//         dp[0] = true;
+//         for (int i = 1; i < n; ++i) {
+//             if (s1[i] == s2[i]) dp[i] = dp[i - 1];
+//             else {
+//                 if (dp[i - 1]) {
+//                     if (s1[i - 1] != s2[i - 1]) { //前一个交换了
+//                         if (s2[i - 1] == s1[i + 1]) dp[i] = false;
+//                         else dp[i] = true;
+//                     }
+//                     else { //没有交换
+//                         if (s1[i - 1] == s1[i + 1]) dp[i] = false;
+//                         else dp[i] = true;
+//                     }   
+//                 }
+//                 else {
+//                     dp[i] = true;
+//                 }
+//             }
+//         }
+//         if (dp[n - 1]) cout << "YES" << endl;
+//         else cout << "NO" << endl;
+//     }
+//     return 0;
+// }
 
+
+// #include <iostream>
+// #include <vector>
+// #include <unordered_map>
+
+// using namespace std;
+
+// struct node_monster{
+//     int a;
+//     int b;
+//     int coin;
+// };
+// int res = 0;
+// int ans = 0;
+// int ans1 = 0;
+// vector<int> X = {-1, 1, 0, 0};
+// vector<int> Y = {0, 0, -1, 1};
+// void check(int& A, int B, unordered_map<int, unordered_map<string, int>> &Coins, unordered_map<int, unordered_map<string, node_monster>> &Monsters, int D, int pos, int x, int y, vector<vector<bool>>& used) {
+//     if (x < 0 || x >= 6 || y < 0 || y >= 6 || used[x][y]) return ;
+//     used[x][y] = true;
+//     //遇到金币格子
+//     if (Coins.count(pos)) { //有金币格子
+//         unordered_map<string, int> coin_temp = Coins[pos];
+//         string x_y = to_string(x) + "+" + to_string(y);
+//         if (coin_temp.count(x_y)) {
+//             ans += coin_temp[x_y];
+//         }
+//     }
+//     //遇到怪物格子
+//     if (Monsters.count(pos)) { //有怪物
+//         unordered_map<string, node_monster> monster_temp = Monsters[pos];
+//         string x_y = to_string(x) + "+" + to_string(y);
+//         if (monster_temp.count(x_y)) {
+//             //会攻击几次
+//             int time = monster_temp[x_y].a / B;
+//             if (monster_temp[x_y].a % B) time++;
+//             //被怪物打死了
+//             if (monster_temp[x_y].b * time >= A) {
+//                 //自己死了，野怪还剩多少血
+//                 int A_temp = A;
+//                 int mon_temp = monster_temp[x_y].a;
+//                 while (A_temp > 0) {
+//                     A_temp -= monster_temp[x_y].b;
+//                     mon_temp -= B;
+//                 }
+//                 monster_temp[x_y].a = mon_temp;  //更新野怪的血量
+//                 //是否要复活
+//                 //是
+//                 if (ans >= D) {
+//                     ans -= D;
+//                     A /= 2;
+//                     check(A, B, Coins, Monsters, D, pos, x, y, used);
+//                 }
+                
+//                 return ;
+//             }
+//             else {  //没有被打死
+//                 A -= monster_temp[x_y].b * time;
+//                 ans += monster_temp[x_y].coin;
+//             }   
+//         }
+//     }
+//     //遇到空格子
+    
+
+//     for (int i = 0; i < 4; ++i) {
+//         int new_x = x + X[i];
+//         int new_y = y + Y[i];
+//         check(A, B, Coins, Monsters, D, pos, new_x, new_y, used);
+//     }
+// }
+
+// int main() {
+//     int A, B;       //小师妹血量和攻击力
+//     cin >> A >> B;
+//     int n, m;       //表示10张地图中有n个金币格，m个怪物格
+//     cin >> n >> m;
+//     unordered_map<int, unordered_map<string, int>> Coins;
+//     for (int i = 0; i < n; ++i) {
+//         int t, x, y, c;
+//         cin >> t >> x >> y >> c;
+//         string temp;
+//         temp = to_string(x - 1) + "+" + to_string(y - 1);
+//         Coins[t - 1].insert({temp, c});
+//     }
+//     unordered_map<int, unordered_map<string, node_monster>> Monsters;
+//     for (int i = 0; i < m; ++i) {
+//         int t, x, y, a, b, c;    //血量为a，攻击力为b
+//         cin >> t >> x >> y >> a >> b >> c;
+//         node_monster temp;
+//         temp.a = a;
+//         temp.b = b;
+//         temp.coin = c;
+//         string temp2;
+//         temp2 = to_string(x - 1) + "+" + to_string(y - 1);
+//         Monsters[t - 1].insert({temp2, temp});
+//     }
+//     int C, D;
+//     cin >> C >> D;  //表示完成一张地图后获得的金币和需要恢复一般血量所需花费的金币
+//     vector<int> t;
+
+//     int k = 0;
+//     for (int i = 0; i < 6; ++i) {
+//         for (int j = 0; j < 6; ++j) {
+//             vector<vector<bool>> used(6, vector<bool>(6));
+//             check(A, B, Coins, Monsters, D, k, i, j, used);
+//             ans1 = max(ans1, ans);
+//             ans = 0;
+//             //如果全部访问完了，将flag置为true
+//             bool flag1 = true;
+//             for (int u = 0; u < used.size(); ++u) {
+//                 for (int r = 0; r < used[0].size(); ++r) {
+//                     if (!used[u][r]) flag1 = false;
+//                 }
+//             }
+//             if (flag1 && k < 10) {
+//                 ans1 += C;
+//                 t.push_back(ans1);
+//                 ans1 = 0;
+//                 k++;
+//                 i = 0;
+//                 j = 0;
+//             }
+//         }
+//     }
+    
+//     for (auto& a : t) res += a;
+    
+//     cout << res << endl;  //输出一个数字表示小师妹能够获得的最大金币值
+//     return 0;
+// }
+/*
+100 5
+2 2
+1 1 3 200
+2 1 3 200
+1 2 1 100 5 100
+2 2 1 100 5 200
+100 100
+*/
