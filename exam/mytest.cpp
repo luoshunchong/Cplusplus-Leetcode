@@ -692,35 +692,68 @@
 100 100
 */
 
+// #include <iostream>
+// #include <vector>
+
+// using namespace std;
+
+// int main() {
+//     string s;
+//     getline(cin, s);
+//     vector<int> nums;
+//     int sum = 0;
+//     string temp = "";
+//     for (int i = 0; i < s.size(); ++i) {
+//         if (s[i] == ' ') {
+//             nums.push_back(stoi(temp));
+//             sum += stoi(temp);
+//             temp = "";
+//         }
+//         temp.push_back(s[i]);
+//     }
+//     nums.push_back(stoi(temp));
+//     sum += stoi(temp);
+//     sum /= (int)nums.size();
+
+//     int t = 0;
+//     int res = 0;
+//     for (int i = 0; i < nums.size(); ++i) {
+//         t = nums[i] + t - sum;
+//         if (t != 0) res++;
+//     }
+//     cout << res << endl;
+//     return 0;
+// }
+
+/*
+ 有一个数组，只有0和1，然后给你一个整数k，反转数组中k个0，返回只包含1的最长子数组的长度
+*/
 #include <iostream>
 #include <vector>
 
 using namespace std;
 
-int main() {
-    string s;
-    getline(cin, s);
-    vector<int> nums;
-    int sum = 0;
-    string temp = "";
-    for (int i = 0; i < s.size(); ++i) {
-        if (s[i] == ' ') {
-            nums.push_back(stoi(temp));
-            sum += stoi(temp);
-            temp = "";
+int check(vector<int>& nums, int k) {
+    //滑动窗口
+    int left = 0, right = 0;
+    int res = 0, zero = 0;
+    while (right < nums.size()) {
+        int c = nums[right];
+        right++;
+        if (c == 0) zero++;
+        res = max(res, right - left);
+        while (zero > k) {
+            int t = nums[left];
+            left++;
+            if (t == 0) zero--;
         }
-        temp.push_back(s[i]);
     }
-    nums.push_back(stoi(temp));
-    sum += stoi(temp);
-    sum /= (int)nums.size();
+    return res;
+}
 
-    int t = 0;
-    int res = 0;
-    for (int i = 0; i < nums.size(); ++i) {
-        t = nums[i] + t - sum;
-        if (t != 0) res++;
-    }
-    cout << res << endl;
+int main() {
+    vector<int> nums = {0, 0, 0, 1, 0, 1};
+    int k = 2;
+    cout << check(nums, k) << endl;
     return 0;
 }

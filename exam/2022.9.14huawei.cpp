@@ -32,7 +32,7 @@ M：生命数 N：板子数量 K：空板子的数量
 //         return 1;
 //     }
 //     int ans = 0;
-//     for (int i = 1; i < 3 && i + l < maxD + 1; ++i) {  //选择走1步，2步，3步？
+//     for (int i = 1; i <= 3 && i + l < maxD + 1; ++i) {  //选择走1步，2步，3步？
 //         ans += dfs(l + i, maxD, re);
 //     }
 //     m[key] = ans;
